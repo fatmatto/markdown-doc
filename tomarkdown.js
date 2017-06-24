@@ -2,35 +2,36 @@ const fs = require('fs')
 const path = require('path')
 const toMarkdown = require('to-markdown');
 const sanitizeHtml = require('sanitize-html');
- 
+const program = require('commander');
+const toc = require('markdown-toc');
+
+program
+  .version('0.0.1')
+  .option('-i, --inputDirectory <path>', 'Input directory containing HTML files to convert to Markdown')
+  .option('-t, --title <title>', 'Document title defaults to no title')
+  .option('-o, --outputFilePath <path>', 'Output file path. Complete file path like /path/to/file.md')
+  .parseOptions(process.argv);
 
 
-function getDirectories (srcpath) {
-  return fs.readdirSync(srcpath)
-    .filter(file => fs.statSync(path.join(srcpath, file)).isDirectory())
-}
+// CLI Params
+var baseInputDirectory = program.inputDirectory;
+var title = program.title;
+var baseOutputDirectory = program.outputFilePath;
 
+
+// Helper function the get an array of filenames in directory
 function getFiles (srcpath) {
   return fs.readdirSync(srcpath)
 }
 
 
 
-if (process.argv.length <= 3) {
-    console.log("Usage: " + __filename.split('/')[__filename.split('/').length-1] + " <input_directory_path> <output_directory_path>");
-    process.exit(-1);
-}
-
-var baseOutputDirectory = process.argv[3];
-var baseInputDirectory = process.argv[2];
- 
-console.log(`Reading directory ${ baseInputDirectory }`);
-console.log(`Writing directory ${ baseOutputDirectory }`);
-
-
+// Removing index since we won't use it
 var filesToConvert = getFiles(baseInputDirectory).filter((item) => {
   return item !== 'index.partial.ejs';
 });
+
+// Pages we need to put before others, they will be placed in this order
 var specialSections = ['introduction','installation','authentication','promises','sorting'];
 
 specialSections = specialSections.map( (s) => s + '.partial.ejs');
@@ -50,13 +51,16 @@ var buf = "";
 
 filesToConvert.forEach( (filename) => {
 
-
-  console.log("Leggo questo file "+path.join(baseInputDirectory, filename))
+  if (!fs.existsSync(path.join(baseInputDirectory, filename))){
+    console.log("INFO: Skipping missing file "+path.join(baseInputDirectory, filename))
+    return;
+  }
+  console.log("INFO: Parsing: "+filename+" ...")
   var html = fs.readFileSync( path.join(baseInputDirectory, filename), 'utf-8');
 
   if ("string" !== typeof html){
-   console.log("Ma che cazzo mi hai dato", html);
-  process.exit(1)
+   console.log("An error has occurred while reading file "+filename);
+   proces.exit(1)
   }
 
 
@@ -74,21 +78,28 @@ filesToConvert.forEach( (filename) => {
   markdown = markdown.replace(/\<\/section\>/g,'');
   markdown = markdown.replace(/\<span.*\>Required\<\/span\>/g,' **Required** ');
 
-   markdown = markdown.replace(/\<span.*\>/g,'');
+  markdown = markdown.replace(/\<span.*\>/g,'');
   markdown = markdown.replace(/\<\/span\>/g,'');
   
-
 
   buf += markdown;
   buf += "\n\n";
 
 })
 
+
+// Adding the TOC
+console.log("INFO: Adding Table of Contents...");
+var TOC = toc(buf).content;
+buf = TOC+"\n\n"+buf;
+
+
 // Adding the title
-buf = "# Marketcloud Javascript SDK "+ "\n\n" + buf;
+//buf = "# Marketcloud Javascript SDK "+ "\n\n" + buf;
+buf = `# ${ title } \n\n  ${ buf } `;
+console.log("INFO: Adding title...");
 
-var buildname = baseOutputDirectory.split('/');
-buildname = buildname[buildname.length-1];
-buildname += '.md';
 
-fs.writeFileSync( path.join(__dirname,buildname), buf);
+console.log("INFO: Writing to file...");
+fs.writeFileSync( baseOutputDirectory, buf);
+console.log("INFO: DONE!");

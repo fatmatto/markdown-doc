@@ -1,5 +1,70 @@
 # Marketcloud Javascript SDK 
 
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Authentication and security](#authentication-and-security)
+- [Promises](#promises)
+- [Sorting](#sorting)
+- [Addresses](#addresses)
+  * [Create an address](#create-an-address)
+  * [List all addresses](#list-all-addresses)
+  * [Retrieve an address](#retrieve-an-address)
+  * [Update an address](#update-an-address)
+  * [Delete an address](#delete-an-address)
+- [Brands](#brands)
+  * [Retrieve a brand](#retrieve-a-brand)
+  * [List all brands](#list-all-brands)
+- [Categories](#categories)
+  * [Retrieve a category](#retrieve-a-category)
+  * [List all categories](#list-all-categories)
+- [Carts](#carts)
+  * [Create a cart](#create-a-cart)
+  * [Retrieve a cart](#retrieve-a-cart)
+  * [Add items to cart](#add-items-to-cart)
+  * [Update cart contents](#update-cart-contents)
+  * [Add a coupon to the cart](#add-a-coupon-to-the-cart)
+  * [Remove cart contents](#remove-cart-contents)
+- [Collections](#collections)
+  * [Retrieve a collection](#retrieve-a-collection)
+  * [List all collections](#list-all-collections)
+- [Contents](#contents)
+  * [Retrieve a content](#retrieve-a-content)
+  * [List contents](#list-contents)
+- [Coupons](#coupons)
+  * [Retrieve a coupon](#retrieve-a-coupon)
+  * [List coupons](#list-coupons)
+- [Orders](#orders)
+  * [List all orders](#list-all-orders)
+  * [Retrieve an order](#retrieve-an-order)
+  * [Create an order](#create-an-order)
+- [Payment methods](#payment-methods)
+    + [Usage with orders](#usage-with-orders)
+  * [Retrieve a payment method](#retrieve-a-payment-method)
+  * [List all payment methods](#list-all-payment-methods)
+- [Payments](#payments)
+  * [Create a payment](#create-a-payment)
+- [Products](#products)
+  * [Retrieve a product](#retrieve-a-product)
+  * [List all products](#list-all-products)
+- [Promotions](#promotions)
+  * [Retrieve a promotion](#retrieve-a-promotion)
+  * [List all promotions](#list-all-promotions)
+  * [Get by cart id](#get-by-cart-id)
+- [Users](#users)
+  * [Checking if a user is authenticated](#checking-if-a-user-is-authenticated)
+  * [Authenticate a user](#authenticate-a-user)
+  * [Authenticate with username and password](#authenticate-with-username-and-password)
+  * [Authenticate with Facebook](#authenticate-with-facebook)
+  * [Logout](#logout)
+  * [Check login status](#check-login-status)
+  * [Create a user](#create-a-user)
+  * [Retrieve the currently authenticated user](#retrieve-the-currently-authenticated-user)
+  * [Update a user](#update-a-user)
+  * [Delete a user](#delete-a-user)
+- [Variables](#variables)
+  * [Retrieve a variable](#retrieve-a-variable)
+  * [List all variables](#list-all-variables)
+
 
 
 This is the documentation for the official Marketcloud Javascript SDK. It is a wrapper for our REST api and it makes it easier to use. This document provides an API reference for versions 2.0.0 and above of the SDK, we highly recommend to use the latest version of the SDK and before upgrading, please read the [changelog](https://github.com/Marketcloud/marketcloud-js/wiki/Note-for-Version-2.0.0).
@@ -101,7 +166,7 @@ client.products.list({
 
 ### Create an address
 
-#### Arguments
+**Arguments**
 
 
 
@@ -120,7 +185,7 @@ client.products.list({
 
 
 
-#### Example request
+**Example request**
 
 ```
 
@@ -134,7 +199,7 @@ marketcloud.addresses.create(new_address,function(err,response){
 
 ### List all addresses
 
-#### Arguments
+**Arguments**
 
 
 
@@ -149,7 +214,7 @@ marketcloud.addresses.create(new_address,function(err,response){
 
 Retrieves a list of addresses filtered and sorted by the query object.
 
-#### Example request
+**Example request**
 
 ```
 
@@ -165,7 +230,7 @@ marketcloud.addresses.list(query,function(err){
 
 Retrieves an address by its id.
 
-#### Example request
+**Example request**
 
 ```
 
@@ -181,7 +246,7 @@ marketcloud.addresses.getById(address_id,function(err,response){
 
 Updates a address by id.
 
-#### Arguments
+**Arguments**
 
 
 
@@ -192,7 +257,7 @@ Updates a address by id.
 
 
 
-#### Example request
+**Example request**
 
 ```
 
@@ -208,7 +273,7 @@ marketcloud.addresses.update(address_id,update_data,function(err,response){
 
 Deletes a address by id.
 
-#### Example request
+**Example request**
 
 ```
 
@@ -237,7 +302,7 @@ marketcloud.addresses.delete(address_id,function(err){
 
 Retrieves a list of Brands filtered and sorted by the query object.
 
-#### Arguments
+**Arguments**
 
 
 
@@ -249,7 +314,7 @@ Retrieves a list of Brands filtered and sorted by the query object.
 
 
 
-#### Example request
+**Example request**
 
 ```
 //Retrieves a list of Brands filtered and sorted by the query object
@@ -286,7 +351,7 @@ marketcloud.brands.list(query, function(err,response){
 
 ### Create a cart
 
-#### Arguments
+**Arguments**
 
 
 
@@ -310,7 +375,7 @@ A line item is an object with the following attributes
 
 Creates a new cart with a product in it.
 
-#### Example request
+**Example request**
 
 ```
 
@@ -327,7 +392,7 @@ Creates a new cart with a product in it.
 
 ### Retrieve a cart
 
-#### Example request
+**Example request**
 
 ```
 
@@ -427,7 +492,7 @@ If your store works with **variants**, you need to explicitly indicate which var
 
 ### Retrieve a collection
 
-#### Example request
+**Example request**
 
 ```
 //Retrieves a collection by its id
@@ -447,7 +512,7 @@ marketcloud.collections.getById(123)
 
 Retrieves a list of Collections filtered and sorted by the query object.
 
-#### Arguments
+**Arguments**
 
 
 
@@ -459,7 +524,7 @@ Retrieves a list of Collections filtered and sorted by the query object.
 
 
 
-#### Example request
+**Example request**
 
 ```
 
@@ -506,7 +571,7 @@ marketcloud.collections.list({})
 
 ### Retrieve a coupon
 
-#### Example request
+**Example request**
 
 ```
 //Retrieves a coupon by its id
@@ -518,7 +583,7 @@ marketcloud.coupons.getById(123);
 
 ### List coupons
 
-#### Example request
+**Example request**
 
 ```
 //Retrieves a paginated list of coupons
@@ -564,7 +629,7 @@ marketcloud.orders.list(query,function(err,response){
 
 ### Create an order
 
-#### Arguments
+**Arguments**
 
 
 
@@ -663,7 +728,7 @@ You can find the list of payment methods supported by Marketcloud in your applic
 
 ### Create a payment
 
-#### Arguments
+**Arguments**
 
 
 
@@ -675,7 +740,7 @@ You can find the list of payment methods supported by Marketcloud in your applic
 
 
 
-#### Example request
+**Example request**
 
 ```
 
@@ -769,7 +834,7 @@ Note that starting from author, the remaining fields are custom attributes defin
 
 Retrieves a list of products filtered and sorted by the query object.
 
-#### Arguments
+**Arguments**
 
 
 
@@ -786,7 +851,7 @@ Retrieves a list of products filtered and sorted by the query object.
 
 
 
-#### Example request
+**Example request**
 
 ```
 //Retrieves a list of products filtered and sorted by the query object
@@ -1013,3 +1078,4 @@ marketcloud.users.update({email : 'newaddress@example.com'},function(err,respons
 });
 ```
 
+ 
