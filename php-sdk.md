@@ -92,7 +92,7 @@
 
 This is the documentation for the official Marketcloud PHP SDK. It is a wrapper for our REST api and it makes it easier to use.
 
-If you haven't set up an application yet, please refer to this [Getting Started](/documentation/rest-api/gettingstarted) guide.
+If you haven't set up an application yet, please refer to this [Getting Started](https://www.marketcloud.it/documentation/rest-api/gettingstarted) guide.
 
 Your account on Marketcloud can handle multiple marketcloud-apps, each one has its own public key / secret key pair that you insert into your PHP code.
 

@@ -70,7 +70,7 @@ This is the documentation for the official Marketcloud Javascript SDK. It is a w
 
 ## Introduction
 
-If you haven't set up an application yet, please refer to the [Getting Started](/documentation/rest-api/gettingstarted) section. You can also check out our API Reference for more detailed information about our SDK.
+If you haven't set up an application yet, please refer to the [Getting Started](https://www.marketcloud.it/documentation/rest-api/gettingstarted) section. You can also check out our API Reference for more detailed information about our SDK.
 
 In Marketcloud, you create an App for each of your web/mobile applications. Each App has its own public key that you insert into your web app. Your account on Marketcloud can handle multiple Apps.
 
@@ -956,7 +956,7 @@ If the authentication is successful, `data` is an object:
 
 ### Authenticate with Facebook
 
-Authenticates a user using Facebook login. Please, note that using this authentication strategy requires a couple more setup steps on the Facebook side. We have a [dedicated guide](/documentation/guides/facebook-login) to help you get started with Facebook and Marketcloud.
+Authenticates a user using Facebook login. Please, note that using this authentication strategy requires a couple more setup steps on the Facebook side. We have a [dedicated guide](https://www.marketcloud.it/documentation/guides/facebook-login) to help you get started with Facebook and Marketcloud.
 
 ```
 

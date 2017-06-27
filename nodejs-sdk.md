@@ -91,9 +91,9 @@
 
 ## Introduction
 
-This is the documentation for the official Marketcloud NodeJS SDK. It is a wrapper for our REST api and it makes it easier to use. You can find the list of our official SDKs in the [libraries section](/documentation/libraries).
+This is the documentation for the official Marketcloud NodeJS SDK. It is a wrapper for our REST api and it makes it easier to use. You can find the list of our official SDKs in the [libraries section](https://www.marketcloud.it/documentation/libraries).
 
-If you haven't set up an application yet, please refer to this [Getting Started](/documentation/rest-api/gettingstarted) guide.
+If you haven't set up an application yet, please refer to this [Getting Started](https://www.marketcloud.it/documentation/rest-api/gettingstarted) guide.
 
 Your account on Marketcloud can handle multiple marketcloud-apps, each one has its own public key / secret key pair that you insert into your NodeJS code.
 
