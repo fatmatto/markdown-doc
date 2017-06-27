@@ -4,84 +4,93 @@
 - [Installation](#installation)
 - [Authentication and security](#authentication-and-security)
 - [Making requests](#making-requests)
+- [Handling errors](#handling-errors)
 - [Addresses](#addresses)
-    * [Arguments](#arguments)
-    * [Example request](#example-request)
-    * [Arguments](#arguments-1)
-    * [Example request](#example-request-1)
-    * [Example request](#example-request-2)
-    * [Arguments](#arguments-2)
-    * [Example request](#example-request-3)
-    * [Example request](#example-request-4)
+  * [Create an address](#create-an-address)
+  * [List all addresses](#list-all-addresses)
+  * [Retrieve an address](#retrieve-an-address)
+  * [Update an address](#update-an-address)
+  * [Delete an address](#delete-an-address)
 - [Brands](#brands)
-    + [Example request](#example-request-5)
-    + [Arguments](#arguments-3)
-    + [Example request](#example-request-6)
-    + [Arguments](#arguments-4)
-    + [Example request](#example-request-7)
-    + [Arguments](#arguments-5)
-    + [Example request](#example-request-8)
-    + [Example request](#example-request-9)
+  * [Retrieve a brand](#retrieve-a-brand)
+  * [List all brands](#list-all-brands)
+  * [Create a new brand](#create-a-new-brand)
+  * [Update a brand](#update-a-brand)
+  * [Delete a brand](#delete-a-brand)
 - [Carts](#carts)
-    + [Arguments](#arguments-6)
-    + [Example request](#example-request-10)
-    + [Arguments](#arguments-7)
-    + [Example request](#example-request-11)
-    + [Example request](#example-request-12)
-    + [Example request](#example-request-13)
-    + [Example request](#example-request-14)
-    + [Example request](#example-request-15)
-    + [Example request](#example-request-16)
+  * [Create a new cart](#create-a-new-cart)
+  * [List all carts](#list-all-carts)
+  * [Retrieve a cart](#retrieve-a-cart)
+  * [Add items to cart](#add-items-to-cart)
+  * [Update cart contents](#update-cart-contents)
+  * [Remove items from cart](#remove-items-from-cart)
+  * [Delete a cart](#delete-a-cart)
 - [Categories](#categories)
-    + [Arguments](#arguments-8)
-    + [Example request](#example-request-17)
-    + [Arguments](#arguments-9)
-    + [Example request](#example-request-18)
-    + [Example request](#example-request-19)
-    + [Arguments](#arguments-10)
-    + [Example request](#example-request-20)
-    + [Example request](#example-request-21)
+  * [Create a new category](#create-a-new-category)
+  * [List all categories](#list-all-categories)
+  * [Retrieve a category](#retrieve-a-category)
+  * [Update a category](#update-a-category)
+  * [Delete a category](#delete-a-category)
 - [Collections](#collections)
-    + [Example request](#example-request-22)
-    + [Arguments](#arguments-11)
-    + [Example request](#example-request-23)
-    + [Collection entry](#collection-entry)
-    + [Example request](#example-request-24)
-    + [Arguments](#arguments-12)
-    + [Example request](#example-request-25)
-    + [Example request](#example-request-26)
+  * [Retrieve a collection](#retrieve-a-collection)
+  * [List all collections](#list-all-collections)
+  * [Create a new collection](#create-a-new-collection)
+  * [Update a collection](#update-a-collection)
+  * [Delete a collection](#delete-a-collection)
 - [Coupons](#coupons)
-    + [Example request](#example-request-27)
-    + [Example request](#example-request-28)
-    + [Parameters](#parameters)
-    + [Example request](#example-request-29)
-    + [Example request](#example-request-30)
-    + [Example request](#example-request-31)
+  * [Retrieve a coupon](#retrieve-a-coupon)
+  * [List coupons](#list-coupons)
+  * [Create a coupon](#create-a-coupon)
+  * [Updates a coupon](#updates-a-coupon)
+  * [Delete a coupon](#delete-a-coupon)
 - [Orders](#orders)
-    + [Arguments](#arguments-13)
-    + [Example request](#example-request-32)
-    + [Example request](#example-request-33)
-    + [Arguments](#arguments-14)
-    + [Example request](#example-request-34)
-- [Payment methods](#payment-methods)
-    + [Usage with orders](#usage-with-orders)
+  * [List all orders](#list-all-orders)
+  * [Retrieve an order](#retrieve-an-order)
+  * [Create a new order](#create-a-new-order)
+  * [Payment methods](#payment-methods)
+      - [Usage with orders](#usage-with-orders)
+  * [Create a payment method](#create-a-payment-method)
+  * [Update a payment method](#update-a-payment-method)
+  * [Delete a payment method](#delete-a-payment-method)
+  * [Retrieve a payment method](#retrieve-a-payment-method)
+  * [List all payment methods](#list-all-payment-methods)
 - [Payments](#payments)
-    + [Arguments](#arguments-15)
-    + [Example request](#example-request-35)
+  * [Create a payment](#create-a-payment)
 - [Products](#products)
-    + [Arguments](#arguments-16)
-    + [Example request](#example-request-36)
-    + [Example request](#example-request-37)
-    + [Example response](#example-response)
-    + [Arguments](#arguments-17)
-    + [Example request](#example-request-38)
-    + [Arguments](#arguments-18)
-    + [Example request](#example-request-39)
-    + [Example request](#example-request-40)
+  * [Create a product](#create-a-product)
+  * [Retrieve a product](#retrieve-a-product)
+  * [List all products](#list-all-products)
+  * [Update a product](#update-a-product)
+  * [Delete a product](#delete-a-product)
+- [Promotions](#promotions)
+  * [List promotions](#list-promotions)
+  * [Create a promotion](#create-a-promotion)
+  * [Updates a promotion](#updates-a-promotion)
+  * [Delete a promotion](#delete-a-promotion)
+  * [Retrieve a promotion](#retrieve-a-promotion)
+  * [Get by cart](#get-by-cart)
+- [Shippings](#shippings)
+  * [Retrieve a shipping](#retrieve-a-shipping)
+  * [List all shippings](#list-all-shippings)
+  * [Create a new shipping](#create-a-new-shipping)
+  * [Update a shipping](#update-a-shipping)
+  * [Delete a shipping](#delete-a-shipping)
+- [Users](#users)
+  * [Authenticates a user](#authenticates-a-user)
+  * [Create a new user](#create-a-new-user)
+  * [List all users](#list-all-users)
+  * [Retrieve a user](#retrieve-a-user)
+  * [Update a user](#update-a-user)
+  * [Delete a user](#delete-a-user)
+- [Variables](#variables)
+  * [Create a variable](#create-a-variable)
+  * [List variables](#list-variables)
+  * [Retrieve a variable](#retrieve-a-variable)
+  * [Update a variable](#update-a-variable)
+  * [Delete a variable](#delete-a-variable)
+## Introduction
 
 This is the documentation for the official Marketcloud PHP SDK. It is a wrapper for our REST api and it makes it easier to use.
-
-### Introduction
 
 If you haven't set up an application yet, please refer to this [Getting Started](/documentation/rest-api/gettingstarted) guide.
 
@@ -89,7 +98,7 @@ Your account on Marketcloud can handle multiple marketcloud-apps, each one has i
 
 The Marketcloud PHP SDK is open source and publicly available at [Github](https://github.com/Marketcloud/marketcloud-php)
 
-### Installation
+## Installation
 
 The easiest way to get started with the PHP sdk, is to install it with composer:
 
@@ -103,7 +112,7 @@ At this point you can include the sdk in your application
 require('./vendor/autoload.php');
 ```
 
-### Authentication and security
+## Authentication and security
 
 Every application identifies itself to Marketcloud using a unique public key. Since you must ship the public key with your client application code, this key is **public**. The application security is guaranteed by the secret key, which you should never share with anyone, since it would allow to ignore every authorization mechanism. The only place where it should be safe to store and use the secret key is (in case you need it) your server side code.
 
@@ -118,7 +127,7 @@ Marketcloud\Marketcloud::setCredentials(array(
 
 The token is transparently handled by the client and generated only when needed.
 
-### Making requests
+## Making requests
 
 ```
 
@@ -130,7 +139,7 @@ Marketcloud\Products::get($query);
 
 ```
 
-
+## Handling errors
 
 Errors returned by the SDK have the following structure
 
@@ -161,15 +170,15 @@ Validation error have further attributes:
 
 
 
-### Addresses
+## Addresses
 
 
 
 
 
+### Create an address
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -188,7 +197,7 @@ Validation error have further attributes:
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -200,9 +209,9 @@ Marketcloud\Addresses::create($new_address)
 
 
 
+### List all addresses
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -217,7 +226,7 @@ Marketcloud\Addresses::create($new_address)
 
 Retrieves a list of addresses filtered and sorted by the query object.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -229,11 +238,11 @@ Marketcloud\Addresses::get($query);
 
 
 
-
+### Retrieve an address
 
 Retrieves an address by its id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -245,11 +254,11 @@ Marketcloud\Addresses::getById($address_id)
 
 
 
-
+### Update an address
 
 Updates an address by id.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -260,7 +269,7 @@ Updates an address by id.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -274,11 +283,11 @@ Marketcloud\Addresses::update($address_id, $update_data);
 
 
 
-
+### Delete an address
 
 Deletes an address by id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -292,13 +301,13 @@ Marketcloud\Addresses::delete($address_id);
 
 
 
-### Brands
+## Brands
 
 
 
+### Retrieve a brand
 
-
-##### Example request
+**Example request**
 
 ```
 
@@ -308,11 +317,11 @@ Marketcloud\Brands::getById($id);
 
 
 
-
+### List all brands
 
 Retrieves a list of Brands filtered and sorted by the query object.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -324,7 +333,7 @@ Retrieves a list of Brands filtered and sorted by the query object.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -333,9 +342,9 @@ Marketcloud\Brands::get();
 
 
 
+### Create a new brand
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -348,7 +357,7 @@ Marketcloud\Brands::get();
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -359,11 +368,11 @@ Marketcloud\Brands::create($new_brand);
 
 
 
-
+### Update a brand
 
 Updates a brand by id.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -374,7 +383,7 @@ Updates a brand by id.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -385,11 +394,11 @@ Marketcloud\Brands::update($brand_id,$update);
 
 
 
-
+### Delete a brand
 
 Deletes a brand by id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -401,15 +410,15 @@ Marketcloud\Brands::delete($brand_id);
 
 
 
-### Carts
+## Carts
 
 
 
-
+### Create a new cart
 
 Creates a new cart with a product in it.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -432,7 +441,7 @@ A line item is an object with the following attributes:
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -447,11 +456,11 @@ Marketcloud\Carts::create(array(
 
 
 
-
+### List all carts
 
 Retrieves a list of carts filtered and sorted by the query object.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -464,7 +473,7 @@ Retrieves a list of carts filtered and sorted by the query object.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -474,9 +483,9 @@ Marketcloud\Carts::get($query);
 
 
 
+### Retrieve a cart
 
-
-##### Example request
+**Example request**
 
 ```
 
@@ -486,9 +495,9 @@ Marketcloud\Carts::getById($cart_id);
 
 
 
+### Add items to cart
 
-
-##### Example request
+**Example request**
 
 ```
 
@@ -500,11 +509,11 @@ Marketcloud\Carts::add($cart_id,
 
 
 
-
+### Update cart contents
 
 Update quantities of products in cart or add new products to cart.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -517,9 +526,9 @@ Marketcloud\Carts::update(testCart.id,array(
 
 
 
+### Remove items from cart
 
-
-##### Example request
+**Example request**
 
 ```
 
@@ -557,11 +566,11 @@ Marketcloud\Carts::remove(cart_id,array(array(
 
 
 
-
+### Delete a cart
 
 Deletes a cart by id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -573,13 +582,13 @@ Marketcloud\Carts::delete($cart_id)
 
 
 
-### Categories
+## Categories
 
 
 
+### Create a new category
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -594,7 +603,7 @@ With a value represents the parent category identifier, and this is a subcategor
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -605,11 +614,11 @@ Marketcloud\Categories::create($new_category);
 
 
 
-
+### List all categories
 
 Retrieves a list of categories filtered and sorted by the query object.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -621,7 +630,7 @@ Retrieves a list of categories filtered and sorted by the query object.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -632,11 +641,11 @@ Marketcloud\Categories::get($query);
 
 
 
-
+### Retrieve a category
 
 Retrieves a category by its id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -646,11 +655,11 @@ Marketcloud\Categories::getById($category_id);
 
 
 
-
+### Update a category
 
 Updates a category by id.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -661,7 +670,7 @@ Updates a category by id.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -672,11 +681,11 @@ Marketcloud\Categories::update($category_id,$update_data);
 
 
 
-
+### Delete a category
 
 Deletes a category by id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -688,13 +697,13 @@ Marketcloud\Categories::delete($category_id);
 
 
 
-### Collections
+## Collections
 
 
 
+### Retrieve a collection
 
-
-##### Example request
+**Example request**
 
 ```
 
@@ -705,11 +714,11 @@ Marketcloud\Collections::getById($id);
 
 
 
-
+### List all collections
 
 Retrieves a list of Collections filtered and sorted by the query object.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -721,7 +730,7 @@ Retrieves a list of Collections filtered and sorted by the query object.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -731,7 +740,7 @@ Marketcloud\Collections::get();
 
 
 
-
+### Create a new collection
 
 
 
@@ -744,7 +753,7 @@ Marketcloud\Collections::get();
 
 
 
-##### Collection entry
+**Collection entry**
 
 
 
@@ -755,7 +764,7 @@ Marketcloud\Collections::get();
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -773,11 +782,11 @@ Marketcloud\Collections::create($new_collection);
 
 
 
-
+### Update a collection
 
 Updates a collection by id.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -788,7 +797,7 @@ Updates a collection by id.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -799,11 +808,11 @@ Marketcloud\Collections::update($collection_id,$collection_update);
 
 
 
-
+### Delete a collection
 
 Deletes a collection by id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -815,13 +824,13 @@ Marketcloud\Collections::delete($collection_id);
 
 
 
-### Coupons
+## Coupons
 
 
 
+### Retrieve a coupon
 
-
-##### Example request
+**Example request**
 
 ```
 //Retrieves a coupon by its id
@@ -831,9 +840,9 @@ Marketcloud\Coupons::getById($id);
 
 
 
+### List coupons
 
-
-##### Example request
+**Example request**
 
 ```
 //Retrieves a paginated list of coupons
@@ -846,9 +855,9 @@ Marketcloud\Coupons::get($query);
 
 
 
+### Create a coupon
 
-
-##### Parameters
+**Parameters**
 
 
 
@@ -863,7 +872,7 @@ Marketcloud\Coupons::get($query);
 
 
 
-##### Example request
+**Example request**
 
 ```
 //Creates a new coupon worth 10$
@@ -882,9 +891,9 @@ Marketcloud\Coupons::create($coupon);
 
 
 
+### Updates a coupon
 
-
-##### Example request
+**Example request**
 
 ```
 //Updates coupon, sets the discount value to 20
@@ -899,9 +908,9 @@ Marketcloud\Coupons::update($coupon_id,$coupon_update);
 
 
 
+### Delete a coupon
 
-
-##### Example request
+**Example request**
 
 ```
 //Delete a coupon by its id
@@ -913,13 +922,13 @@ Marketcloud\Coupons::delete($id);
 
 
 
-### Orders
+## Orders
 
 
 
+### List all orders
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -932,7 +941,7 @@ Marketcloud\Coupons::delete($id);
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -942,9 +951,9 @@ Marketcloud\Orders::get($query);
 
 
 
+### Retrieve an order
 
-
-##### Example request
+**Example request**
 
 ```
 
@@ -954,9 +963,9 @@ Marketcloud\Orders::getById($id);
 
 
 
+### Create a new order
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -978,7 +987,7 @@ Marketcloud\Orders::getById($id);
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -1007,7 +1016,7 @@ In order to tell Marketcloud that an order is using a certain payment method, ju
 
 
 
-
+### Create a payment method
 
 ```
 //Creates a new payment method
@@ -1026,7 +1035,7 @@ $new_payment_method = array(
 
 
 
-
+### Update a payment method
 
 ```
 //Updates a new payment method
@@ -1036,7 +1045,7 @@ $new_payment_method = array(
 
 
 
-
+### Delete a payment method
 
 ```
 //Deletes a payment method with id 123
@@ -1046,7 +1055,7 @@ $new_payment_method = array(
 
 
 
-
+### Retrieve a payment method
 
 ```
 //Retrieves a payment method by its id
@@ -1056,7 +1065,7 @@ $new_payment_method = array(
 
 
 
-
+### List all payment methods
 
 ```
 //Retrieves a list of payment methods filtered and sorted by the query object
@@ -1068,7 +1077,7 @@ $new_payment_method = array(
 
 
 
-### Payments
+## Payments
 
 Marketcloud supports a certain number of payment methods. Most of them requires client side and server side configuration, we try to abstract the server side part, so you just have to configure client side scripts.
 
@@ -1079,9 +1088,9 @@ You can find the list of payment methods supported by Marketcloud in your applic
 
 
 
+### Create a payment
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -1093,7 +1102,7 @@ You can find the list of payment methods supported by Marketcloud in your applic
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -1120,13 +1129,13 @@ Marketcloud\Payments::create(array(
 
 
 
-### Products
+## Products
 
 
 
+### Create a product
 
-
-##### Arguments
+**Arguments**
 
 
 
@@ -1147,7 +1156,7 @@ Marketcloud\Payments::create(array(
 
 
 
-##### Example request
+**Example request**
 
 ```
 Marketcloud\Products::create($new_product);
@@ -1158,18 +1167,18 @@ Marketcloud\Products::create($new_product);
 
 
 
-
+### Retrieve a product
 
 Retrieves a product by its id
 
-##### Example request
+**Example request**
 
 ```
 Marketcloud\Products::getById($product_id);
 
 ```
 
-##### Example response
+**Example response**
 
 ```
 
@@ -1199,11 +1208,11 @@ Note that starting from author, the remaining fields are custom attributes defin
 
 
 
-
+### List all products
 
 Retrieves a list of products filtered and sorted by the query object.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -1222,7 +1231,7 @@ Retrieves a list of products filtered and sorted by the query object.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -1238,11 +1247,11 @@ The previous example queries the api for products that belongs to the category w
 
 
 
-
+### Update a product
 
 Updates a product by id.
 
-##### Arguments
+**Arguments**
 
 
 
@@ -1253,7 +1262,7 @@ Updates a product by id.
 
 
 
-##### Example request
+**Example request**
 
 ```
 
@@ -1264,11 +1273,11 @@ Marketcloud\Products::update($product_id,$update_data);
 
 
 
-
+### Delete a product
 
 Delete a product by id.
 
-##### Example request
+**Example request**
 
 ```
 
@@ -1278,4 +1287,527 @@ Marketcloud\Products::delete($product_id);
 
 
 
- 
+
+
+## Promotions
+
+> **Warning**
+> This is a new feature, if you find some issue, please report at info@marketcloud.it. Also, note that you have to create promotions from the dashboard.
+
+
+
+### List promotions
+
+**Example request**
+
+```
+//Retrieves a paginated list of promotions
+$query = array(
+  "active" => true 
+)
+Marketcloud\Promotions::get($query);
+
+```
+
+
+
+### Create a promotion
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| name  **Required**  | String | The name of the promotion |
+| conditions  **Required**  | Mixed | An array of conditions, a condition is an object describing the rules under which a promotion can be applied to an order. See the table below for further information |
+| effects  **Required**  | Mixed | An array of effects, an effect is an object describing the impact of the promotion on the final order. See the table below for further information |
+| active | Boolean | If false, the promotion can not be used by any order. |
+
+
+
+**Promotion condition model**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| type  **Required**  | String | The type of the condition, possible values are `'MIN_NUMBER_OF_PRODUCTS'` triggered when the cart has at least a certain number of products, `'MIN_CART_VALUE'` triggered when the total value of the products in cart is greater than or equal to a certain value, `'CART_HAS_ITEM'` when the cart contain a certain item. |
+| value  **Required**  | Number | The value of the |
+
+
+
+**Promotion effect model**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| type  **Required**  | String | The type of the effect, possible values are `'CART_VALUE_PERCENTAGE_REDUCTION'` will reduce the total cart value by a percentage value, `'CART_VALUE_NET_REDUCTION'` will redduce the total cart value by a fixed value, `'CART_ITEMS_NET_REDUCTION'` will reduce only the value of items by a fixed value, `'CART_ITEMS_PERCENTAGE_REDUCTION'` will reduce only the value of items by a percentage value, `FREE_SHIPPING` will discount the value of shipping. |
+| value  **Required**  | Number | The value of the effect. |
+
+
+
+**Example request**
+
+```
+//Creates a new promotion that grants 
+//free shipping on order with a cart value above 70$ 
+$promotion = array(
+  "name" => "Free shipping above 70$",
+  "conditions" => array(
+    array(
+      "type" => "MIN_CART_VALUE",
+      "value" => 70
+    )
+  ),
+  "effects" => array(
+    array(
+        "type" : "FREE_SHIPPING",
+        "value" : "FREE SHIPPING"
+      )
+  ),
+
+)
+
+Marketcloud\Promotions::create($promotion);
+
+```
+
+
+
+### Updates a promotion
+
+**Example request**
+
+```
+//Updates promotion,
+$promotion_update = array(
+"name" => "Free shipping above 50$",
+  "conditions" => array(
+    array(
+      "type" => "MIN_CART_VALUE",
+      "value" => 50
+    )
+  ),
+)
+
+Marketcloud\Promotions::update($promotion_id,$promotion_update);
+
+```
+
+
+
+### Delete a promotion
+
+**Example request**
+
+```
+//Delete a promotion with id $id
+Marketcloud\Promotions::delete($id);
+
+```
+
+
+
+
+
+### Retrieve a promotion
+
+**Example request**
+
+```
+//Retrieves a promotion by its id
+Marketcloud\Promotions::getById($id);
+
+```
+
+
+
+### Get by cart
+
+Retrieves a list of Promotions that can be applied to the given cart.
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| cart_id | Integer | Return only those promotion methods are compatibles with the cart with id `cart_id` |
+
+
+
+**Example request**
+
+```
+
+// Get eligible promotions for cart with id 1234
+Marketcloud\Promotions::getByCart(1234);
+
+```
+
+
+
+
+
+## Shippings
+
+
+
+### Retrieve a shipping
+
+**Example request**
+
+```
+//Retrieves a shipping by its id
+Marketcloud\Shippings::getById($id);
+
+```
+
+
+
+### List all shippings
+
+Retrieves a list of Shippings filtered and sorted by the query object.
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| fields | String | Comma separated list of attribute names to retrieve. Use it to retrieve only the fields you need. |
+| per_page | Integer | The number of shippings to retrieve per page |
+| page | Integer | The page number of shippings to display |
+| value | Integer | Return only those shipping methods that allow the wanted total value |
+| weight | Integer | Return only those shipping methods that allow the wanted total weight |
+| height | Integer | Return only those shipping methods that allow the wanted total height |
+| depth | Integer | Return only those shipping methods that allow the wanted total depth |
+| width | Integer | Return only those shipping methods that allow the wanted total width |
+
+
+
+**Example request**
+
+```
+
+// Get eligible shippings methods for orders
+// with a total value of $cart_value
+// and a total weight of 40
+Marketcloud\Shippings::get(array(
+    "value" => $cart_value,
+    "weight" => 40
+));
+```
+
+
+
+### Create a new shipping
+
+**Arguments**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| name  **Required**  | String | The shipping name |
+| base_cost  **Required**  | Number | The base price for this shipping method. |
+| per_item_cost | Number | The additional price for each item in the shipment. |
+| min_value | Number | Orders with a total price greater than  are eligible for this shipping rule. |
+| max_value | Number | Orders with a total price smaller than  are eligible for this shipping rule. |
+| min_weight | Number | Orders with a total weight greater than  are eligible for this shipping rule. |
+| max_weight | Number | Orders with a total weight smaller than  are eligible for this shipping rule. |
+| min_width | Number | Orders with a total width greater than  are eligible for this shipping rule. |
+| max_width | Number | Orders with a total width smaller than  are eligible for this shipping rule. |
+| min_height | Number | Orders with a total height greater than  are eligible for this shipping rule. |
+| max_height | Number | Orders with a total height smaller than  are eligible for this shipping rule. |
+| min_depth | Number | Orders with a total depth greater than  are eligible for this shipping rule. |
+| max_depth | Number | Orders with a total depth smaller than  are eligible for this shipping rule. |
+
+
+
+**Example request**
+
+```
+
+// This shipping is eligible for orders with total value greater than 20
+$new_shipping = array(
+  "name" => "Free shipping",
+  "base_cost" => 0,
+  "per_item_cost" => 0,
+  "min_value" => 20
+);
+Marketcloud\Shippings::create($new_shipping);
+
+```
+
+
+
+### Update a shipping
+
+Updates a shipping by id.
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| shipping_id  **Required**  | Integer | The univocal shipping identifier |
+| update_data  **Required**  | Object | An object containing the updates. See [Shippings::create()](#shippings.create) for more informations. |
+
+
+
+**Example request**
+
+```
+
+$update = array("name" => "Fruit");
+Marketcloud\Shippings::update($shipping_id,$update);
+
+```
+
+
+
+### Delete a shipping
+
+Deletes a shipping by id.
+
+**Example request**
+
+```
+
+Marketcloud\Shippings::delete($shipping_id);
+
+```
+
+
+
+
+
+## Users
+
+
+
+### Authenticates a user
+
+**Example request**
+
+```
+
+//Authenticates a user given email and password
+Marketcloud\Users::authenticate('john.snow@wall.com','IKnowNothing')  
+
+```
+
+If the authentication is successful, `data` is an object:
+
+```
+
+{
+  "user" : {
+    "email" : "john.doe@example.com",
+    "full_name" : "John Doe"
+  },
+  "token" : "SECRET_TOKEN"
+}
+
+```
+
+You can use the token to make calls on behalf of the user, but since the SDK works with admin credentials, you should avoid doing it.
+
+
+
+### Create a new user
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| email  **Required**  | String | The user mail, must be less than 255 characters long. |
+| name  **Required**  | String | The user name |
+| password  **Required**  | String | The user password |
+| image_url | String | The URL for the user image/logo. |
+| `` | Mixed | This resource accepts custom attributes. |
+
+
+
+Use this method to register users to you eCommerce app.
+
+**Example request**
+
+```
+
+//Authenticates a user given email and password
+Marketcloud\Users::create(array(
+  "name" => "John Snow",
+  "email" => "john.snow@thewall.com",
+  "password" => "IknowKnothing"
+))
+
+```
+
+
+
+### List all users
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `` | Mixed | Filter users by any custom field. |
+| fields | String | Comma separated list of attribute names to retrieve. Use it to retrieve only the fields you need. |
+| per_page | Number | The number of products to retrieve per page |
+| page | Number | The page number of products to display |
+
+
+
+**Example request**
+
+```
+Marketcloud\Users::get($query);
+
+```
+
+
+
+### Retrieve a user
+
+**Example request**
+
+```
+
+Marketcloud\Users::getById(888)   
+
+```
+
+
+
+### Update a user
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| user_id  **Required**  | Number | The univocal user identifier |
+| update_data  **Required**  | Object | An object containing the updates. See [users.create()](#users.create) for more informations. |
+
+
+
+**Example request**
+
+```
+
+Marketcloud\Users::update(user_id,update_data)
+
+```
+
+
+
+### Delete a user
+
+Delete a user by id
+
+**Example request**
+
+```
+
+Marketcloud\Users::delete($user_id)
+
+```
+
+
+
+
+
+## Variables
+
+### Create a variable
+
+**Model**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| name  **Required**  | String | The variable name |
+| value  **Required**  | Mixed | The value of your variable |
+| type  **Required**  | String | This parameter tells the API the type of this variable, the possible values are `string`, `number` and `boolean` |
+
+
+
+**Example request**
+
+```
+//Creates a new variable
+$variable = array(
+  "name" => "google_analytics_code",
+  "code" => "UA-127168162196",
+  "type" => "string"
+)
+
+Marketcloud\Variables::create($variable);
+
+```
+
+
+
+### List variables
+
+**Example request**
+
+```
+//Retrieves a paginated list of variables
+$query = array(
+  "active" => true 
+)
+Marketcloud\Variables::get($query);
+
+```
+
+
+
+### Retrieve a variable
+
+**Example request**
+
+```
+//Retrieves a variable by its id
+Marketcloud\Variables::getById(123);
+
+```
+
+
+
+### Update a variable
+
+**Example request**
+
+```
+//Updates a variable
+$update = array(
+  "name" => "newVariableName"
+)
+Marketcloud\Variables::update($id,$update);
+
+```
+
+
+
+### Delete a variable
+
+**Example request**
+
+```
+//Delete a variable by its id
+Marketcloud\Variables::delete($id);
+
+```
+
+
+

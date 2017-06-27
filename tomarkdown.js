@@ -31,6 +31,8 @@ var filesToConvert = getFiles(baseInputDirectory).filter((item) => {
   return item !== 'index.partial.ejs';
 });
 
+console.log("ECCO IL LISTONE",filesToConvert)
+
 // Pages we need to put before others, they will be placed in this order
 var specialSections = ['introduction','installation','authentication','promises','sorting'];
 
@@ -40,6 +42,10 @@ specialSections.reverse()
 
 specialSections.forEach( (item) => {
   var index = filesToConvert.indexOf(item);
+
+  if (index < 0)
+    return;
+  
   filesToConvert.splice(index,1);
   filesToConvert.unshift(item);
 })
@@ -48,6 +54,7 @@ specialSections.forEach( (item) => {
 
 
 var buf = "";
+
 
 filesToConvert.forEach( (filename) => {
 
@@ -91,12 +98,12 @@ filesToConvert.forEach( (filename) => {
 // Adding the TOC
 console.log("INFO: Adding Table of Contents...");
 var TOC = toc(buf).content;
-buf = TOC+"\n\n"+buf;
+buf = TOC+"\n"+buf;
 
 
 // Adding the title
 //buf = "# Marketcloud Javascript SDK "+ "\n\n" + buf;
-buf = `# ${ title } \n\n  ${ buf } `;
+buf = `# ${ title } \n\n${buf}`;
 console.log("INFO: Adding title...");
 
 

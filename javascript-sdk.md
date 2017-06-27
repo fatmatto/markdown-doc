@@ -66,7 +66,6 @@
   * [List all variables](#list-all-variables)
 
 
-
 This is the documentation for the official Marketcloud Javascript SDK. It is a wrapper for our REST api and it makes it easier to use. This document provides an API reference for versions 2.0.0 and above of the SDK, we highly recommend to use the latest version of the SDK and before upgrading, please read the [changelog](https://github.com/Marketcloud/marketcloud-js/wiki/Note-for-Version-2.0.0).
 
 ## Introduction
@@ -125,12 +124,12 @@ In order to authenticate a user, use the [users.authenticate()](#users) method.
 Even if the examples in this reference use callbacks, starting with version 2.0.0 of the SDK, each endpoint method also returns a promise.
 
 ```
-//This will work
+// This is ok
 marketcloud.products.list({},function(err,response){
  console.log("My products:",response.data);
 })
 
-//And also this works
+// Also this is ok
 marketcloud.products.list({})
 .then(function(response){
   console.log("My products:",response.data);
@@ -1078,4 +1077,3 @@ marketcloud.users.update({email : 'newaddress@example.com'},function(err,respons
 });
 ```
 
- 

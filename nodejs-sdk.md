@@ -61,12 +61,37 @@
   * [List all products](#list-all-products)
   * [Update a product](#update-a-product)
   * [Delete a product](#delete-a-product)
-
-This is the documentation for the official Marketcloud NodeJS SDK. It is a wrapper for our REST api and it makes it easier to use. You can find the list of our official SDKs in the [libraries section](/documentation/libraries).
-
+- [Promotions](#promotions)
+  * [List promotions](#list-promotions)
+  * [Create a promotion](#create-a-promotion)
+  * [Updates a promotion](#updates-a-promotion)
+  * [Delete a promotion](#delete-a-promotion)
+  * [Retrieve a promotion](#retrieve-a-promotion)
+  * [Get by cart](#get-by-cart)
+- [Shippings](#shippings)
+  * [Retrieve a shipping](#retrieve-a-shipping)
+  * [List all shippings](#list-all-shippings)
+  * [Create a new shipping](#create-a-new-shipping)
+  * [Update a shipping](#update-a-shipping)
+  * [Delete a shipping](#delete-a-shipping)
+- [Users](#users)
+  * [Authenticates a user](#authenticates-a-user)
+  * [Create a new user](#create-a-new-user)
+  * [List all users](#list-all-users)
+  * [Retrieve a user](#retrieve-a-user)
+  * [Update a user](#update-a-user)
+  * [Delete a user](#delete-a-user)
+- [Variables](#variables)
+  * [List variables](#list-variables)
+  * [Create a variable](#create-a-variable)
+  * [Update a variable](#update-a-variable)
+  * [Delete a variable](#delete-a-variable)
+  * [Retrieve a variable](#retrieve-a-variable)
 
 
 ## Introduction
+
+This is the documentation for the official Marketcloud NodeJS SDK. It is a wrapper for our REST api and it makes it easier to use. You can find the list of our official SDKs in the [libraries section](/documentation/libraries).
 
 If you haven't set up an application yet, please refer to this [Getting Started](/documentation/rest-api/gettingstarted) guide.
 
@@ -106,6 +131,8 @@ var marketcloud = new Marketcloud.Client({
 ```
 
 The token is transparently handled by the client and it lasts 4 hours, after that ,the SDK automatically detects the need to re-authenticate so you don't need to check for this.
+
+
 
 ## Making requests
 
@@ -1399,4 +1426,555 @@ marketcloud.products.delete(product_id)
 
 
 
- 
+
+
+## Promotions
+
+> **Warning**
+> This is a new feature, if you find some issue, please report at info@marketcloud.it. Also, note that you have to create promotions from the dashboard.
+
+
+
+### List promotions
+
+**Example request**
+
+```
+//Retrieves a paginated list of promotions
+marketcloud.promotions.get({"active" : true});
+
+```
+
+
+
+### Create a promotion
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| name  **Required**  | String | The name of the promotion |
+| conditions  **Required**  | Mixed | An array of conditions, a condition is an object describing the rules under which a promotion can be applied to an order. See the table below for further information |
+| effects  **Required**  | Mixed | An array of effects, an effect is an object describing the impact of the promotion on the final order. See the table below for further information |
+| active | Boolean | If false, the promotion can not be used by any order. |
+
+
+
+**Promotion condition model**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| type  **Required**  | String | The type of the condition, possible values are `'MIN_NUMBER_OF_PRODUCTS'` triggered when the cart has at least a certain number of products, `'MIN_CART_VALUE'` triggered when the total value of the products in cart is greater than or equal to a certain value, `'CART_HAS_ITEM'` when the cart contain a certain item. |
+| value  **Required**  | Number | The value of the |
+
+
+
+**Promotion effect model**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| type  **Required**  | String | The type of the effect, possible values are `'CART_VALUE_PERCENTAGE_REDUCTION'` will reduce the total cart value by a percentage value, `'CART_VALUE_NET_REDUCTION'` will redduce the total cart value by a fixed value, `'CART_ITEMS_NET_REDUCTION'` will reduce only the value of items by a fixed value, `'CART_ITEMS_PERCENTAGE_REDUCTION'` will reduce only the value of items by a percentage value, `FREE_SHIPPING` will discount the value of shipping. |
+| value  **Required**  | Number | The value of the effect. |
+
+
+
+**Example request**
+
+```
+//Creates a new promotion that grants 
+//free shipping on order with a cart value above 70$ 
+var newPromotion = {
+  name : "Free shipping above 70$",
+  conditions : [
+    { type : "MIN_CART_VALUE", value:70 }
+  ],
+  effects : [
+    {type : "FREE_SHIPPING", value: "FREE_SHIPPING"}
+  ]
+}
+marketcloud.promotions.create(newPromotion);
+
+//Creates a new promotion that grants 
+//10% discount on each item on orders with a cart value above 70$ 
+var newPromotion = {
+  name : "10% discount above 70$",
+  conditions : [
+    { type : "MIN_CART_VALUE", value:70 }
+  ],
+  effects : [
+    {type : "CART_ITEMS_PERCENTAGE_REDUCTION", value: 10}
+  ]
+}
+marketcloud.promotions.create(newPromotion);
+
+//Creates a new promotion that grants 
+//10$ discount  on orders with a cart value above 70$ 
+var newPromotion = {
+  name : "10$ discount above 70$",
+  conditions : [
+    { type : "MIN_CART_VALUE", value:70 }
+  ],
+  effects : [
+    {type : "CART_VALUE_NET_REDUCTION", value: 10}
+  ]
+}
+marketcloud.promotions.create(newPromotion);
+
+```
+
+
+
+### Updates a promotion
+
+**Example request**
+
+```
+//We change the threshold for free shipping,
+var promotionUpdate = {
+  name : "Free shipping above 50$",
+  conditions : [
+    { type : "MIN_CART_VALUE", value : 50}
+  ]
+}
+
+marketcloud.promotions.update(123,promotionUpdate);
+
+```
+
+
+
+### Delete a promotion
+
+**Example request**
+
+```
+//Delete a promotion with id 123
+marketcloud.promotions.delete(123);
+
+```
+
+
+
+
+
+### Retrieve a promotion
+
+**Example request**
+
+```
+//Retrieves a promotion by its id
+marketcloud.promotions.getById(123);
+
+```
+
+
+
+### Get by cart
+
+Retrieves a list of Promotions that can be applied to the given cart.
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| cart_id | Integer | Return only those promotion methods are compatibles with the cart with id `cart_id` |
+
+
+
+**Example request**
+
+```
+
+// Get eligible promotions for cart with id 1234
+marketcloud.promotions.getByCart(1234);
+
+```
+
+
+
+
+
+## Shippings
+
+
+
+### Retrieve a shipping
+
+**Example request**
+
+```
+//Retrieves a shipping by its id
+marketcloud.shippings.getById(123);
+
+```
+
+
+
+### List all shippings
+
+Retrieves a list of Shippings filtered and sorted by the query object.
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| fields | String | Comma separated list of attribute names to retrieve. Use it to retrieve only the fields you need. |
+| per_page | Integer | The number of shippings to retrieve per page |
+| page | Integer | The page number of shippings to display |
+| value | Integer | Return only those shipping methods that allow the wanted total value |
+| weight | Integer | Return only those shipping methods that allow the wanted total weight |
+| height | Integer | Return only those shipping methods that allow the wanted total height |
+| depth | Integer | Return only those shipping methods that allow the wanted total depth |
+| width | Integer | Return only those shipping methods that allow the wanted total width |
+
+
+
+**Example request**
+
+```
+
+// Get eligible shippings methods for orders
+// with a total value of 50 $ (depends on currency)
+// and a total weight of 40
+marketcloud.shippings.list({
+    "value" : 50,
+    "weight" : 40
+});
+
+```
+
+
+
+### Create a new shipping
+
+**Arguments**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| name  **Required**  | String | The shipping name |
+| base_cost  **Required**  | Number | The base price for this shipping method. |
+| per_item_cost | Number | The additional price for each item in the shipment. |
+| min_value | Number | Orders with a total price greater than  are eligible for this shipping rule. |
+| max_value | Number | Orders with a total price smaller than  are eligible for this shipping rule. |
+| min_weight | Number | Orders with a total weight greater than  are eligible for this shipping rule. |
+| max_weight | Number | Orders with a total weight smaller than  are eligible for this shipping rule. |
+| min_width | Number | Orders with a total width greater than  are eligible for this shipping rule. |
+| max_width | Number | Orders with a total width smaller than  are eligible for this shipping rule. |
+| min_height | Number | Orders with a total height greater than  are eligible for this shipping rule. |
+| max_height | Number | Orders with a total height smaller than  are eligible for this shipping rule. |
+| min_depth | Number | Orders with a total depth greater than  are eligible for this shipping rule. |
+| max_depth | Number | Orders with a total depth smaller than  are eligible for this shipping rule. |
+
+
+
+**Example request**
+
+```
+
+// This shipping is eligible for orders with total value greater than 20
+var new_shipping = {
+  "name" : "Free shipping",
+  "base_cost" : 0,
+  "per_item_cost" : 0,
+  "min_value" : 20
+};
+marketcloud.shippings.create(new_shipping);
+
+```
+
+
+
+### Update a shipping
+
+Updates a shipping by id.
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| shipping_id  **Required**  | Integer | The univocal shipping identifier |
+| update_data  **Required**  | Object | An object containing the updates. See [marketcloud.shippings.create()](#shippings.create) for more informations. |
+
+
+
+**Example request**
+
+```
+
+// Updates a shipping method with id 123
+marketcloud.shippings.update(123,{name : "Free shipping"});
+
+```
+
+
+
+### Delete a shipping
+
+Deletes a shipping by id.
+
+**Example request**
+
+```
+marketcloud.shippings.delete(123);
+
+```
+
+
+
+
+
+## Users
+
+
+
+### Authenticates a user
+
+**Example request**
+
+```
+
+//Authenticates a user given email and password
+marketcloud.users.authenticate('john.snow@wall.com','IKnowNothing')
+.then(function(data){
+  // Your code here
+})
+
+})      
+
+```
+
+If the authentication is successful, `data` is an object:
+
+```
+
+{
+  "user" : {
+    "email" : "john.doe@example.com",
+    "full_name" : "John Doe"
+  },
+  "token" : "SECRET_TOKEN"
+}
+
+```
+
+You can use the token to make calls on behalf of the user, but since the SDK works with admin credentials, you should avoid doing it.
+
+
+
+### Create a new user
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| email  **Required**  | String | The user mail, must be less than 255 characters long. |
+| name  **Required**  | String | The user name |
+| password  **Required**  | String | The user password |
+| image_url | String | The URL for the user image/logo. |
+| `` | Mixed | This resource accepts custom attributes. |
+
+
+
+Use this method to register users to you eCommerce app.
+
+**Example request**
+
+```
+
+//Authenticates a user given email and password
+marketcloud.users.create({
+  name: "John Snow",
+  email: "john.snow@thewall.com",
+  password : "IknowKnothing"
+})
+.then(function(data){
+  // Your code here
+})      
+
+```
+
+
+
+### List all users
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `` | Mixed | Filter users by any custom field. |
+| fields | String | Comma separated list of attribute names to retrieve. Use it to retrieve only the fields you need. |
+| per_page | Number | The number of products to retrieve per page |
+| page | Number | The page number of products to display |
+
+
+
+**Example request**
+
+```
+marketcloud.users.list(query)
+.then(function(data){
+  // Your code here
+})     
+
+```
+
+
+
+### Retrieve a user
+
+**Example request**
+
+```
+
+marketcloud.users.getById(888)
+.then(function(data){
+  // Your code here
+})     
+
+```
+
+
+
+### Update a user
+
+**Arguments**
+
+
+
+| Field | Type | Description |
+| --- | --- | --- |
+| user_id  **Required**  | Number | The univocal user identifier |
+| update_data  **Required**  | Object | An object containing the updates. See [users.create()](#users.create) for more informations. |
+
+
+
+**Example request**
+
+```
+
+marketcloud.users.update(user_id,update_data)
+  .then(function(data){
+  // Your code here
+})
+
+```
+
+
+
+### Delete a user
+
+Delete a user by id
+
+**Example request**
+
+```
+
+marketcloud.users.delete(user_id)
+.then(function(){
+  // Your code here
+})
+
+```
+
+
+
+
+
+## Variables
+
+
+
+### List variables
+
+**Example request**
+
+```
+//Retrieves a paginated list of variables
+marketcloud.variables.list();
+
+```
+
+
+
+### Create a variable
+
+**Model**
+
+
+
+| Attribute | Type | Description |
+| --- | --- | --- |
+| name  **Required**  | String | The variable name |
+| value  **Required**  | Mixed | The value of your variable |
+| type  **Required**  | String | This parameter tells the API the type of this variable, the possible values are `string`, `number` and `boolean` |
+
+
+
+**Example request**
+
+```
+//Creates a new variable
+new_variable = {
+  "name" : "google_analytics_code",
+  "code" : "UA-127168162196",
+  "type" : "string"
+}
+
+marketcloud.variables.create(new_variable);
+
+```
+
+
+
+### Update a variable
+
+**Example request**
+
+```
+//Updates a variable
+marketcloud.variables.update({value : "newValue"});
+
+```
+
+
+
+### Delete a variable
+
+**Example request**
+
+```
+//Delete a variable by its id
+marketcloud.variables.delete(id);
+
+```
+
+
+
+### Retrieve a variable
+
+**Example request**
+
+```
+//Retrieves a variable by its id
+marketcloud.variables.getById(123);
+
+```
+
+
+
