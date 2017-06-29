@@ -1,4 +1,8 @@
-# Marketcloud Javascript SDK 
+[![Build Status](https://travis-ci.org/Marketcloud/marketcloud-js.svg?branch=master)](https://travis-ci.org/Marketcloud/marketcloud-js) [![npm version](https://badge.fury.io/js/marketcloud-js.svg)](https://badge.fury.io/js/marketcloud-js) [![Bower version](https://badge.fury.io/bo/marketcloud-js.svg)](https://badge.fury.io/bo/marketcloud-js)
+[![Code Climate](https://codeclimate.com/github/Marketcloud/marketcloud-js/badges/gpa.svg)](https://codeclimate.com/github/Marketcloud/marketcloud-js)
+# Marketcloud Javascript SDK
+![Marketcloud](http://www.marketcloud.it/img/logo/new_with_text.png)
+
 
 - [Introduction](#introduction)
 - [Installation](#installation)
